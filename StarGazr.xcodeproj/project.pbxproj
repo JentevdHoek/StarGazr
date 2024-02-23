@@ -94,10 +94,10 @@
 		184776742B88A30A00B99A9F /* StarGazr */ = {
 			isa = PBXGroup;
 			children = (
-				184776752B88A30A00B99A9F /* StarGazrApp.swift */,
-				184776772B88A30A00B99A9F /* ContentView.swift */,
-				184776792B88A30B00B99A9F /* Assets.xcassets */,
-				1847767B2B88A30B00B99A9F /* Preview Content */,
+				184776A42B88A70500B99A9F /* Resources */,
+				184776A12B88A50800B99A9F /* View */,
+				184776A02B88A4FE00B99A9F /* Controller */,
+				1847769F2B88A4F500B99A9F /* Model */,
 			);
 			path = StarGazr;
 			sourceTree = "<group>";
@@ -125,6 +125,46 @@
 				184776922B88A30B00B99A9F /* StarGazrUITestsLaunchTests.swift */,
 			);
 			path = StarGazrUITests;
+			sourceTree = "<group>";
+		};
+		1847769F2B88A4F500B99A9F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		184776A02B88A4FE00B99A9F /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		184776A12B88A50800B99A9F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				184776772B88A30A00B99A9F /* ContentView.swift */,
+				184776A22B88A67D00B99A9F /* Components */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		184776A22B88A67D00B99A9F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		184776A42B88A70500B99A9F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				184776792B88A30B00B99A9F /* Assets.xcassets */,
+				1847767B2B88A30B00B99A9F /* Preview Content */,
+				184776752B88A30A00B99A9F /* StarGazrApp.swift */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

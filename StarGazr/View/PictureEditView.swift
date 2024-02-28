@@ -13,6 +13,7 @@ struct PictureEditView: View {
     @State var description = ""
     
     @Environment(FavoritesViewModel.self) var favourites
+    @Environment(\.verticalSizeClass) var sizeClass
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
@@ -21,8 +22,13 @@ struct PictureEditView: View {
                 TextField("Title", text: $title)
             }
             Section(header: Text("Description")) {
-                TextEditor(text: $description)
-                    .frame(height: 500)
+                if sizeClass == .compact {
+                    TextEditor(text: $description)
+                        .frame(height: 200)
+                } else {
+                    TextEditor(text: $description)
+                        .frame(height: 400)
+                }
             }
             
             Button(action: save, label: {

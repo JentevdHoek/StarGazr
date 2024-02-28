@@ -58,4 +58,11 @@ class FavoritesViewModel {
             add(APOD: APOD)
         }
     }
+    
+    func update(APOD: APODModel) {
+        if let index = Favorites.firstIndex(where: {$0.date == APOD.date}) {
+            Favorites[index] = APOD
+            save()
+        }
+    }
 }

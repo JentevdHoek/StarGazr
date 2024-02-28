@@ -24,7 +24,6 @@ class APODViewModel: ObservableObject {
                     
                     do {
                         newAPOD = try JSONDecoder().decode(APODModel.self, from: data)
-                        print(newAPOD)
                     } catch {
                         print("Error decoding JSON: \(error)")
                     }

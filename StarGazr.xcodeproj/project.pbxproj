@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		184776762B88A30A00B99A9F /* StarGazrApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184776752B88A30A00B99A9F /* StarGazrApp.swift */; };
-		184776782B88A30A00B99A9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184776772B88A30A00B99A9F /* ContentView.swift */; };
+		184776782B88A30A00B99A9F /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184776772B88A30A00B99A9F /* HomeView.swift */; };
 		1847767A2B88A30B00B99A9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 184776792B88A30B00B99A9F /* Assets.xcassets */; };
 		1847767D2B88A30B00B99A9F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1847767C2B88A30B00B99A9F /* Preview Assets.xcassets */; };
 		184776872B88A30B00B99A9F /* StarGazrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184776862B88A30B00B99A9F /* StarGazrTests.swift */; };
@@ -16,6 +16,7 @@
 		184776932B88A30B00B99A9F /* StarGazrUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184776922B88A30B00B99A9F /* StarGazrUITestsLaunchTests.swift */; };
 		18C9D74E2B8E5F8700D448C0 /* APIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D74D2B8E5F8700D448C0 /* APIModel.swift */; };
 		18C9D7502B8E5FA300D448C0 /* APIViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D74F2B8E5FA300D448C0 /* APIViewModel.swift */; };
+		18C9D7522B8F31E200D448C0 /* FavouritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18C9D7512B8F31E200D448C0 /* FavouritesView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,7 +39,7 @@
 /* Begin PBXFileReference section */
 		184776722B88A30A00B99A9F /* StarGazr.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StarGazr.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		184776752B88A30A00B99A9F /* StarGazrApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarGazrApp.swift; sourceTree = "<group>"; };
-		184776772B88A30A00B99A9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		184776772B88A30A00B99A9F /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		184776792B88A30B00B99A9F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1847767C2B88A30B00B99A9F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		184776822B88A30B00B99A9F /* StarGazrTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StarGazrTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -48,6 +49,7 @@
 		184776922B88A30B00B99A9F /* StarGazrUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarGazrUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		18C9D74D2B8E5F8700D448C0 /* APIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIModel.swift; sourceTree = "<group>"; };
 		18C9D74F2B8E5FA300D448C0 /* APIViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIViewModel.swift; sourceTree = "<group>"; };
+		18C9D7512B8F31E200D448C0 /* FavouritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavouritesView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,8 +144,9 @@
 		184776A12B88A50800B99A9F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				184776772B88A30A00B99A9F /* ContentView.swift */,
+				184776772B88A30A00B99A9F /* HomeView.swift */,
 				184776A22B88A67D00B99A9F /* Components */,
+				18C9D7512B8F31E200D448C0 /* FavouritesView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -303,9 +306,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				184776782B88A30A00B99A9F /* ContentView.swift in Sources */,
+				184776782B88A30A00B99A9F /* HomeView.swift in Sources */,
 				18C9D74E2B8E5F8700D448C0 /* APIModel.swift in Sources */,
 				184776762B88A30A00B99A9F /* StarGazrApp.swift in Sources */,
+				18C9D7522B8F31E200D448C0 /* FavouritesView.swift in Sources */,
 				18C9D7502B8E5FA300D448C0 /* APIViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

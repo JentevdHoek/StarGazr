@@ -7,61 +7,37 @@
 
 import SwiftUI
 
-import Foundation
-
 struct ContentView: View {
-    @ObservedObject var viewModel = AstronomyViewModel()
-    
-    var body: some View {
-        NavigationView {
-            List(viewModel.astronomyData) { astronomy in
-                NavigationLink(destination: DetailView(astronomy: astronomy)) {
-                    Text(astronomy.title)
-                }
-            }
-            .navigationBarTitle("Astronomy Pictures")
-        }
-        .onAppear {
-            viewModel.fetchData()
-        }
-    }
-}
+    @ObservedObject var apodViewModel = APODViewModel()
 
-
-struct DetailView: View {
-    var astronomy: AstronomyPictureOfTheDay
-    
     var body: some View {
         VStack {
-            Text(astronomy.title)
-                .font(.title)
-                .padding()
-            
-            Text(astronomy.explanation)
-                .padding()
-            
-            RemoteImage(url: astronomy.url)
-                .aspectRatio(contentMode: .fit)
-                .padding()
+            if let apod = apodViewModel.apod {
+                Text(apod.title)
+                    .font(.title)
+                Text(apod.explanation)
+                    .padding()
+                AsyncImage(url: URL(string: apod.url)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .scaledToFit()
+                    case .failure:
+                        Text("Failed to load image")
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                .frame(maxWidth: .infinity, maxHeight: 300)
+            } else {
+                ProgressView()
+            }
         }
-        .navigationBarTitle("Detail View")
-    }
-}
-
-struct RemoteImage: View {
-    private let url: String
-    
-    init(url: String) {
-        self.url = url
-    }
-    
-    var body: some View {
-        if let imageURL = URL(string: url), let imageData = try? Data(contentsOf: imageURL), let uiImage = UIImage(data: imageData) {
-            return Image(uiImage: uiImage)
-                .resizable()
-        } else {
-            return Image(systemName: "photo")
-                .resizable()
+        .onAppear {
+            apodViewModel.fetchAPOD()
         }
     }
 }

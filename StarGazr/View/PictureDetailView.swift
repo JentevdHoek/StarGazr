@@ -30,14 +30,7 @@ struct PictureDetailView: View {
                     }
                     .frame(maxWidth: .infinity, maxHeight: 300)
                 } else if apod.media_type == "video" {
-                    if let url = URL(string: apod.url) {
-                        Link(destination: url) {
                             Text(apod.url)
-                                .foregroundColor(.blue)
-                                .underline()
-                        }
-                        .padding()
-                    }
                 }
                 Text(apod.explanation)
                     .padding()
@@ -49,8 +42,3 @@ struct PictureDetailView: View {
     }
     
 }
-
-//#Preview {
-//    PictureDetailView()
-//        .environment(FavoritesViewModel())
-//}

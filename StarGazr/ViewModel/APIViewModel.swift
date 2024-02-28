@@ -30,7 +30,6 @@ class APODViewModel: ObservableObject {
                 do {
                     let newAPOD = try decodeAPODModel(from: data)
                     
-                    // Ensure that updates to @Published property are done on the main thread
                     DispatchQueue.main.async {
                         self.apod = newAPOD
                     }

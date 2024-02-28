@@ -7,22 +7,40 @@
 
 import Foundation
 
-import Foundation
-
 struct APODModel: Codable, Identifiable {
     let id = UUID()
     let date: String
     let explanation: String
-    let hdurl: String
+    let hdurl: String?
     let media_type: String
     let service_version: String
     let title: String
     let url: String
-    
-    private enum CodingKeys: String, CodingKey {
-        case date, explanation, hdurl, media_type, service_version, title, url
+    let copyright: String?
+
+    enum CodingKeys: String, CodingKey {
+        case date, explanation, hdurl, media_type, service_version, title, url, copyright
     }
 }
+
+func decodeAPODModel(from data: Data) throws -> APODModel {
+    do {
+        return try JSONDecoder().decode(APODModel.self, from: data)
+    } catch {
+        do {
+            // Try decoding as an array
+            let array = try JSONDecoder().decode([APODModel].self, from: data)
+            return array.first ?? defaultModel()
+        } catch {
+            throw error
+        }
+    }
+}
+
+func defaultModel() -> APODModel {
+    return APODModel(date: "", explanation: "", hdurl: nil, media_type: "", service_version: "", title: "", url: "", copyright: nil)
+}
+
 
 //voorbeeld response
 //{

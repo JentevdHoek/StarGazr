@@ -9,7 +9,8 @@ import Foundation
 
 import Foundation
 
-struct APODModel: Codable {
+struct APODModel: Codable, Identifiable {
+    var id = UUID()
     let date: String
     let explanation: String
     let hdurl: String

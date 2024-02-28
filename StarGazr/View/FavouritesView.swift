@@ -8,8 +8,16 @@
 import SwiftUI
 
 struct FavouritesView: View {
+    @ObservedObject var favoritesModel = FavoritesViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        if let favorites = favoritesModel.Favorites {
+            List(favorites.compactMap{ $0 }) { favorite in
+                FavouriteListItemView()
+            }
+        } else {
+            Text("No favorites")
+        }
     }
 }
 

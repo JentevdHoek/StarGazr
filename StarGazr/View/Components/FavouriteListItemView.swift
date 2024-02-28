@@ -14,20 +14,26 @@ struct FavouriteListItemView: View {
         NavigationLink(destination: PictureDetailView())
         {
             HStack{
-                AsyncImage(url: URL(string: apod.url)) { phase in
-                    switch phase {
-                    case .empty:
-                        ProgressView()
-                            .frame(width: 50, height: 50)
-                    case .success(let image):
-                        image
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                    case .failure:
-                        Text("Failed to load image")
-                    @unknown default:
-                        EmptyView()
+                if apod.media_type == "image" {
+                    AsyncImage(url: URL(string: apod.url)) { phase in
+                        switch phase {
+                        case .empty:
+                            ProgressView()
+                                .frame(width: 50, height: 50)
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                        case .failure:
+                            Text("Failed to load image")
+                        @unknown default:
+                            EmptyView()
+                        }
                     }
+                } else {
+                    Image(systemName: "play.circle")
+                        .resizable()
+                        .frame(width: 50, height: 50)
                 }
                 Text(apod.title)
             }

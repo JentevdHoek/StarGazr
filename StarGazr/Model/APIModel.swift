@@ -10,7 +10,7 @@ import Foundation
 import Foundation
 
 struct APODModel: Codable, Identifiable {
-    var id = UUID()
+    let id = UUID()
     let date: String
     let explanation: String
     let hdurl: String
@@ -18,6 +18,10 @@ struct APODModel: Codable, Identifiable {
     let service_version: String
     let title: String
     let url: String
+    
+    private enum CodingKeys: String, CodingKey {
+        case date, explanation, hdurl, media_type, service_version, title, url
+    }
 }
 
 //voorbeeld response

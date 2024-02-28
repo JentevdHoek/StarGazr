@@ -8,20 +8,34 @@
 import SwiftUI
 
 struct FavouriteListItemView: View {
+    var apod: APODModel
+    
     var body: some View {
         NavigationLink(destination: PictureDetailView())
         {
             HStack{
-                Image("test")
-                    .resizable()
-                    .frame(width: 50, height: 50)
-                 Text("Shades of Night")
+                AsyncImage(url: URL(string: apod.url)) { phase in
+                    switch phase {
+                    case .empty:
+                        ProgressView()
+                            .frame(width: 50, height: 50)
+                    case .success(let image):
+                        image
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                    case .failure:
+                        Text("Failed to load image")
+                    @unknown default:
+                        EmptyView()
+                    }
+                }
+                Text(apod.title)
             }
         }
             
     }
 }
 
-#Preview {
-    FavouriteListItemView()
-}
+//#Preview {
+//    FavouriteListItemView()
+//}

@@ -12,18 +12,19 @@ struct HomeView: View {
         NavigationView {
             APODView()
                 .navigationTitle("StarGazr")
-                .toolbar{NavigationLink(destination: FavouritesView()) {
+                .toolbar{NavigationLink(destination: FavouritesView().navigationTitle("Favourites")) {
                     Text("Favourites")
                         .font(.title2)
                     }
                 }
-        }
+        }.environment(FavoritesViewModel())
         
     }
 }
 
 struct APODView: View {
     @ObservedObject var apodViewModel = APODViewModel()
+    @Environment(FavoritesViewModel.self) var favourites
     
     var body: some View {
         VStack {
@@ -47,6 +48,16 @@ struct APODView: View {
                 .frame(maxWidth: .infinity, maxHeight: 300)
                 Text(apod.explanation)
                     .padding()
+                Button(action: { favourites.toggle(APOD: apod) }, label: {
+                    if(favourites.dateIsFavorite(apod.date)){
+                        Text("♥")
+                            .font(.system(size: 36))
+                    } else {
+                        Text("♡")
+                            .font(.system(size: 36))
+                    }
+                    
+                })
             } else {
                 ProgressView()
             }

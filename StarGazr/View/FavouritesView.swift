@@ -8,15 +8,25 @@
 import SwiftUI
 
 struct FavouritesView: View {
-    @ObservedObject var favoritesModel = FavoritesViewModel()
+    @Environment(FavoritesViewModel.self) var favoritesModel
     
     var body: some View {
-        if let favorites = favoritesModel.Favorites {
-            List(favorites.compactMap{ $0 }) { favorite in
-                FavouriteListItemView()
+        let favorites = favoritesModel.Favorites
+        if favorites.count > 0 {
+            List() {
+                ForEach(favorites) { favorite in
+                    FavouriteListItemView(apod: favorite)
+                        .swipeActions {
+                            Button(role: .destructive) {
+                                favoritesModel.delete(APOD: favorite)
+                            } label: {
+                                Label("Delete", systemImage: "trash")
+                            }
+                        }
+                }
             }
         } else {
-            Text("No favorites")
+            Text("No favorites 💔")
         }
     }
 }

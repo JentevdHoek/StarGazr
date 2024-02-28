@@ -37,5 +37,13 @@ class APODViewModel: ObservableObject {
                 }
             }.resume()
         }
+    
+    func save() {
+        if let apod = apod {
+            FavoritesViewModel().add(APOD: apod)
+        } else {
+            print("failed saving apod")
+        }
+    }
 }
 

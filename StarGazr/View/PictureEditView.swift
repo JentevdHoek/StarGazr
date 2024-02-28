@@ -9,29 +9,42 @@ import SwiftUI
 
 struct PictureEditView: View {
     @State var apod: APODModel
+    @State var title = ""
+    @State var description = ""
+    
     @Environment(FavoritesViewModel.self) var favourites
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
     
     var body: some View {
         Form {
             Section(header: Text("Title")) {
-                TextField("Title", text: $apod.title)
+                TextField("Title", text: $title)
             }
             Section(header: Text("Description")) {
-                TextEditor(text: $apod.explanation)
+                TextEditor(text: $description)
                     .frame(height: 500)
             }
             
             Button(action: save, label: {
                 Text("save")
             })
-        }.navigationTitle("Editing: \(apod.title)")
+        }
+        .onAppear(perform: initView)
+        .navigationTitle("Editing: \(apod.title)")
         
     }
     
     func save() {
+        apod.title = title
+        apod.explanation = description
+        
         favourites.update(APOD: apod)
         presentationMode.wrappedValue.dismiss()
+    }
+    
+    func initView() {
+        title = apod.title
+        description = apod.explanation
     }
 }
 

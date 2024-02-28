@@ -11,7 +11,7 @@ struct FavouriteListItemView: View {
     var apod: APODModel
     
     var body: some View {
-        NavigationLink(destination: PictureDetailView())
+        NavigationLink(destination: PictureDetailView(apod: apod))
         {
             HStack{
                 if apod.media_type == "image" {

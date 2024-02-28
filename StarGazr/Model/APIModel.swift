@@ -10,11 +10,11 @@ import Foundation
 struct APODModel: Codable, Identifiable {
     let id = UUID()
     let date: String
-    let explanation: String
+    var explanation: String
     let hdurl: String?
     let media_type: String
     let service_version: String
-    let title: String
+    var title: String
     let url: String
     let copyright: String?
 

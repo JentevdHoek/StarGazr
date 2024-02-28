@@ -143,6 +143,6 @@ struct APODView: View {
     
 }
 
-//#Preview {
-//    HomeView()
-//}
+#Preview {
+    HomeView()
+}

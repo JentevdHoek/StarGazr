@@ -20,7 +20,17 @@ struct SearchView: View{
         apodViewModel.fetchAPOD(isRandom: isRandom, date: selectedDate)
     }
     
-    func initView() {
+    func saveRandomToggleState(){
+        UserDefaults.standard.set(Bool(isRandom), forKey: isRandomKey)
+    }
+    
+    func saveDateState(){
+        let standard = UserDefaults.standard
+        let selectedDateValue = selectedDate.timeIntervalSinceReferenceDate
+        standard.set(selectedDateValue, forKey: selectedDateKey)
+    }
+    
+    func initialise() {
         let standard = UserDefaults.standard
         
         if standard.object(forKey: selectedDateKey) == nil {
@@ -36,18 +46,12 @@ struct SearchView: View{
         }
         
         isRandom = standard.bool(forKey: isRandomKey)
+        
+        if shouldPerformInitialSearch {
+            search()
+            shouldPerformInitialSearch = false
+        }
     }
-    
-    func saveRandomToggleState(){
-        UserDefaults.standard.set(Bool(isRandom), forKey: isRandomKey)
-    }
-    
-    func saveDateState(){
-        let standard = UserDefaults.standard
-        let selectedDateValue = selectedDate.timeIntervalSinceReferenceDate
-        standard.set(selectedDateValue, forKey: selectedDateKey)
-    }
-    
     
     var body: some View {
         VStack {
@@ -65,18 +69,21 @@ struct SearchView: View{
                     displayedComponents: .date,
                     label: {}
                 ).disabled(isRandom)
-                    .onChange(of: selectedDate) {
-                        saveDateState()
-                    }
+                    .labelsHidden()
+                .onChange(of: selectedDate) {
+                    saveDateState()
+                }
+                Spacer()
                 Button(action: {
                     self.selectedDate = Date()
                 }) {
                     Image(systemName: "calendar.circle.fill")
                         .font(.title)
-                        .foregroundColor(.blue)
-                }
+                        .foregroundColor(isRandom ? .gray : .blue)
+                }.disabled(isRandom)
                 Spacer()
             }.padding(.horizontal)
+
             Button(action: {
                 search()
             }) {
@@ -91,11 +98,7 @@ struct SearchView: View{
             }
             
         }.onAppear(perform: {
-            initView()
-            if shouldPerformInitialSearch {
-                search()
-                shouldPerformInitialSearch = false
-            }
+            initialise()
         })
     }
 }

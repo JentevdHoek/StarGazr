@@ -13,6 +13,7 @@ struct PictureDetailView: View {
     var body: some View {
         ScrollView{
             VStack {
+                Text(apod.title).font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                 if apod.media_type == "image" {
                     AsyncImage(url: URL(string: apod.url)) { phase in
                         switch phase {
@@ -35,10 +36,11 @@ struct PictureDetailView: View {
                 Text(apod.explanation)
                     .padding()
             }
-        }.navigationTitle(apod.title)
+        }
+//        .navigationTitle(apod.title)
+//        .navigationBarTitleDisplayMode(.inline)
         .toolbar{
             NavigationLink(destination: PictureEditView(apod: apod), label: {Text("Edit")})
         }
     }
-    
 }

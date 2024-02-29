@@ -30,7 +30,3 @@ struct FavouritesView: View {
         }
     }
 }
-
-#Preview {
-    FavouritesView()
-}

@@ -25,7 +25,9 @@ struct FavouriteListItemView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                         case .failure:
-                            Text("Failed to load image")
+                            Image(systemName: "photo")
+                                .resizable()
+                                .frame(width: 50, height: 50)
                         @unknown default:
                             EmptyView()
                         }
@@ -41,7 +43,3 @@ struct FavouriteListItemView: View {
             
     }
 }
-
-//#Preview {
-//    FavouriteListItemView()
-//}

@@ -11,6 +11,7 @@ struct PictureEditView: View {
     @State var apod: APODModel
     @State var title = ""
     @State var description = ""
+    @State private var text = ""
     
     @Environment(FavoritesViewModel.self) var favourites
     @Environment(\.verticalSizeClass) var sizeClass
@@ -25,7 +26,8 @@ struct PictureEditView: View {
                 if sizeClass == .compact {
                     TextEditor(text: $description)
                         .frame(height: 200)
-                } else {
+                }
+                else {
                     TextEditor(text: $description)
                         .frame(height: 400)
                 }
